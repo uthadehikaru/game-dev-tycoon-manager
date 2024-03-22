@@ -21,7 +21,7 @@ class CompanyPolicy
      */
     public function view(User $user, Company $company): bool
     {
-        return $company->user_id==$user->id;
+        return $user->is_admin || $company->user_id==$user->id;
     }
 
     /**
@@ -37,7 +37,7 @@ class CompanyPolicy
      */
     public function update(User $user, Company $company): bool
     {
-        return $company->user_id==$user->id;
+        return $user->is_admin || $company->user_id==$user->id;
     }
 
     /**
@@ -45,7 +45,7 @@ class CompanyPolicy
      */
     public function delete(User $user, Company $company): bool
     {
-        return $company->user_id==$user->id;
+        return $user->is_admin || $company->user_id==$user->id;
     }
 
     /**
@@ -53,7 +53,7 @@ class CompanyPolicy
      */
     public function restore(User $user, Company $company): bool
     {
-        return $company->user_id==$user->id;
+        return $user->is_admin || $company->user_id==$user->id;
     }
 
     /**
@@ -61,6 +61,6 @@ class CompanyPolicy
      */
     public function forceDelete(User $user, Company $company): bool
     {
-        return $company->user_id==$user->id;
+        return $user->is_admin || $company->user_id==$user->id;
     }
 }

@@ -21,7 +21,7 @@ class GamePolicy
      */
     public function view(User $user, Game $game): bool
     {
-        return $game->company->user_id==$user->id;
+        return $user->is_admin || $game->company->user_id==$user->id;
     }
 
     /**
@@ -37,7 +37,7 @@ class GamePolicy
      */
     public function update(User $user, Game $game): bool
     {
-        return $game->company->user_id==$user->id;
+        return $user->is_admin || $game->company->user_id==$user->id;
     }
 
     /**
@@ -45,7 +45,7 @@ class GamePolicy
      */
     public function delete(User $user, Game $game): bool
     {
-        return $game->company->user_id==$user->id;
+        return $user->is_admin || $game->company->user_id==$user->id;
     }
 
     /**
@@ -53,7 +53,7 @@ class GamePolicy
      */
     public function restore(User $user, Game $game): bool
     {
-        return $game->company->user_id==$user->id;
+        return $user->is_admin || $game->company->user_id==$user->id;
     }
 
     /**
@@ -61,6 +61,6 @@ class GamePolicy
      */
     public function forceDelete(User $user, Game $game): bool
     {
-        return $game->company->user_id==$user->id;
+        return $user->is_admin || $game->company->user_id==$user->id;
     }
 }
