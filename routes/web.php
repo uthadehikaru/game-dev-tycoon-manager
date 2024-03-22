@@ -9,5 +9,5 @@ Route::view('/register', 'register');
 Route::post('/register', RegisterController::class);
 Route::get('/logout', function() {
     Auth::logout();
-    return redirect('/login');
+    return redirect('/');
 });
